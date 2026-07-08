@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b4a92">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="HLV 2026">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <title>Học viện Huấn luyện viên 2026</title>
+  <style>
+    :root {
+      --blue:#0b4a92; --cyan:#12b6e8; --gold:#ffd44a; --red:#e21b2d; --dark:#071427;
+      --glass:rgba(255,255,255,.86); --text:#10223f;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;color:var(--text);}
+    body{
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,212,74,.35), transparent 26%),
+        radial-gradient(circle at 88% 10%, rgba(18,182,232,.30), transparent 28%),
+        linear-gradient(135deg,#dff5ff 0%,#ffffff 42%,#fff3d4 100%);
+      overflow-x:hidden;
+    }
+    .bg{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+    .orb{position:absolute;border-radius:50%;filter:blur(10px);opacity:.45;animation:float 7s ease-in-out infinite}
+    .orb.one{width:260px;height:260px;background:#38bdf8;left:-70px;top:70px}
+    .orb.two{width:320px;height:320px;background:#ffd44a;right:-110px;bottom:80px;animation-delay:1s}
+    .orb.three{width:190px;height:190px;background:#e21b2d;right:20%;top:55%;animation-delay:2s;opacity:.18}
+    @keyframes float{50%{transform:translateY(-22px)}}
+    .wrap{width:min(1180px,92vw);margin:0 auto;padding:34px 0 42px}
+    header{
+      min-height:38vh;display:flex;align-items:center;justify-content:center;text-align:center;
+    }
+    .hero{
+      width:100%;border-radius:34px;background:var(--glass);backdrop-filter:blur(12px);
+      padding:38px 24px;box-shadow:0 24px 80px rgba(0,70,130,.18);border:1px solid rgba(255,255,255,.9);
+      position:relative;overflow:hidden;
+    }
+    .hero:before{content:"";position:absolute;inset:-2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-100%);animation:shine 5s infinite}
+    @keyframes shine{40%,100%{transform:translateX(100%)}}
+    .logo{width:92px;height:92px;border-radius:24px;box-shadow:0 14px 30px rgba(0,74,146,.22);margin-bottom:14px}
+    h1{font-size:clamp(34px,6vw,72px);line-height:1.02;margin:0;color:var(--blue);text-transform:uppercase;text-shadow:0 3px 0 white;font-weight:950}
+    .sub{font-size:clamp(17px,2.4vw,25px);font-weight:800;color:#274969;margin:14px auto 0;max-width:850px;line-height:1.4}
+    .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+    .install,.guide{
+      border:0;border-radius:999px;padding:13px 20px;font-size:16px;font-weight:900;cursor:pointer;
+      background:linear-gradient(135deg,var(--blue),var(--cyan));color:white;box-shadow:0 12px 28px rgba(11,74,146,.22);
+    }
+    .guide{background:white;color:var(--blue);border:2px solid #dbeafe;box-shadow:none}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+    .game-card{
+      min-height:238px;text-decoration:none;color:inherit;border-radius:28px;background:rgba(255,255,255,.90);
+      box-shadow:0 18px 50px rgba(0,70,130,.13);border:1px solid rgba(255,255,255,.9);
+      padding:24px;display:flex;flex-direction:column;justify-content:space-between;transition:.18s transform,.18s box-shadow,.18s border-color;
+      position:relative;overflow:hidden;
+    }
+    .game-card:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-48px;bottom:-55px;background:rgba(18,182,232,.10)}
+    .game-card:hover{transform:translateY(-6px);box-shadow:0 28px 65px rgba(0,70,130,.22);border-color:#7dd3fc}
+    .card-top{display:flex;justify-content:space-between;align-items:center}
+    .emoji{font-size:52px;filter:drop-shadow(0 8px 8px rgba(0,0,0,.12))}
+    .badge{font-weight:900;color:#075985;background:#e0f2fe;border-radius:999px;padding:8px 11px;font-size:13px}
+    h2{font-size:26px;line-height:1.15;margin:16px 0 8px;color:#0b4a92}
+    p{font-size:16px;line-height:1.45;color:#405871;margin:0;font-weight:700}
+    .note{margin:22px auto 0;background:rgba(255,255,255,.78);border:1px solid #dbeafe;border-radius:22px;padding:16px 18px;color:#334155;line-height:1.55;font-weight:700}
+    dialog{border:0;border-radius:24px;max-width:720px;width:min(92vw,720px);padding:0;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+    dialog::backdrop{background:rgba(2,6,23,.45)}
+    .modal{padding:24px;background:white;color:#10223f}
+    .modal h3{margin:0 0 12px;color:var(--blue);font-size:26px}
+    .modal li{margin:8px 0;line-height:1.45}
+    .close{float:right;border:0;background:#e2e8f0;border-radius:12px;padding:9px 12px;font-weight:900;cursor:pointer}
+    @media(max-width:900px){.grid{grid-template-columns:1fr} header{min-height:auto;padding-top:18px} .hero{padding:28px 18px} .game-card{min-height:190px}}
+  </style>
+</head>
+<body>
+  <div class="bg"><div class="orb one"></div><div class="orb two"></div><div class="orb three"></div></div>
+  <main class="wrap">
+    <header>
+      <section class="hero">
+        <img class="logo" src="assets/icon-192.png" alt="HLV 2026">
+        <h1>Học viện Huấn luyện viên 2026</h1>
+        <p class="sub">Cổng game ôn luyện kỹ năng thanh thiếu nhi Thành phố Đà Nẵng</p>
+        <div class="actions">
+          <button id="installBtn" class="install" hidden>📲 Cài như app</button>
+          <button class="guide" onclick="document.getElementById('guide').showModal()">📱 Hướng dẫn cài trên điện thoại</button>
+        </div>
+      </section>
+    </header>
+    <section class="grid" aria-label="Danh sách game">
+      
+      <a class="game-card" href="games/atgt.html" aria-label="Mở game Đường đua An toàn giao thông">
+        <div class="card-top">
+          <span class="emoji">🚦</span>
+          <span class="badge">Mở game</span>
+        </div>
+        <h2>Đường đua An toàn giao thông</h2>
+        <p>Ôn luyện an toàn giao thông qua đường đua về đích.</p>
+      </a>
+
+      <a class="game-card" href="games/so-cap-cuu.html" aria-label="Mở game Hành trình Cấp cứu">
+        <div class="card-top">
+          <span class="emoji">🚑</span>
+          <span class="badge">Mở game</span>
+        </div>
+        <h2>Hành trình Cấp cứu</h2>
+        <p>Đưa bệnh nhân vào phòng cấp cứu an toàn.</p>
+      </a>
+
+      <a class="game-card" href="games/phuong-huong.html" aria-label="Mở game Hành trình Nhà thám hiểm">
+        <div class="card-top">
+          <span class="emoji">🧭</span>
+          <span class="badge">Mở game</span>
+        </div>
+        <h2>Hành trình Nhà thám hiểm</h2>
+        <p>Khám phá phương hướng, thiên văn và thiên nhiên.</p>
+      </a>
+
+      <a class="game-card" href="games/nghi-thuc-hoi.html" aria-label="Mở game Chinh phục Nghi thức">
+        <div class="card-top">
+          <span class="emoji">🎖️</span>
+          <span class="badge">Mở game</span>
+        </div>
+        <h2>Chinh phục Nghi thức</h2>
+        <p>Ôn luyện Nghi thức và Điều lệ Hội LHTN Việt Nam.</p>
+      </a>
+
+      <a class="game-card" href="games/doan-hoi.html" aria-label="Mở game Hành trình Tuổi trẻ">
+        <div class="card-top">
+          <span class="emoji">🌟</span>
+          <span class="badge">Mở game</span>
+        </div>
+        <h2>Hành trình Tuổi trẻ</h2>
+        <p>Tìm hiểu Đoàn TNCS Hồ Chí Minh và Hội LHTN Việt Nam.</p>
+      </a>
+
+      <a class="game-card" href="games/kien-thuc-chung.html" aria-label="Mở game Kho báu Tri thức 2026">
+        <div class="card-top">
+          <span class="emoji">🏛️</span>
+          <span class="badge">Mở game</span>
+        </div>
+        <h2>Kho báu Tri thức 2026</h2>
+        <p>Chinh phục bộ câu hỏi kiến thức tổng hợp.</p>
+      </a>
+    </section>
+    <div class="note">
+      <b>Gợi ý:</b> Đưa toàn bộ thư mục này lên GitHub Pages. Khi mở trên điện thoại, có thể dùng “Thêm vào Màn hình chính” để dùng gần giống app.
+    </div>
+  </main>
+  <dialog id="guide">
+    <div class="modal">
+      <button class="close" onclick="document.getElementById('guide').close()">Đóng</button>
+      <h3>📱 Cài web thành app trên điện thoại</h3>
+      <ul>
+        <li><b>iPhone/Safari:</b> mở link GitHub Pages → bấm nút Chia sẻ → chọn <b>Thêm vào Màn hình chính</b>.</li>
+        <li><b>Android/Chrome:</b> mở link → bấm dấu ba chấm → chọn <b>Thêm vào màn hình chính</b> hoặc <b>Cài đặt ứng dụng</b>.</li>
+        <li>Sau khi cài, biểu tượng <b>HLV 2026</b> sẽ nằm ngoài màn hình như một app.</li>
+      </ul>
+    </div>
+  </dialog>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+    }
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.hidden = false;
+    });
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.hidden = true;
+    });
+  </script>
+</body>
+</html>

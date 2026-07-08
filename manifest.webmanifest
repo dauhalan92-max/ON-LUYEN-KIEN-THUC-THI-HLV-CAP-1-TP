@@ -1,0 +1,22 @@
+{
+  "name": "Học viện Huấn luyện viên 2026",
+  "short_name": "HLV 2026",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#dff5ff",
+  "theme_color": "#0b4a92",
+  "description": "Cổng game ôn luyện kỹ năng thanh thiếu nhi Thành phố Đà Nẵng",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
